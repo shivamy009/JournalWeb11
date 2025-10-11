@@ -285,7 +285,7 @@ export default function Home() {
                 <BookOpen className="w-8 h-8 mx-auto" />
               </div>
               <h3 className="text-3xl md:text-4xl font-bold text-purple-400 drop-shadow-lg">
-                {stats.loading ? formatNumber(animatedNumbers.books) : "0+"}
+                 {stats.loading ? formatNumber(animatedNumbers.books) : formatNumber(stats.books)}
               </h3>
               <p className="text-gray-100 text-sm mt-2 font-medium drop-shadow-md">Books</p>
             </div>
