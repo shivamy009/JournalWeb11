@@ -9,6 +9,14 @@ const s3Client = new S3Client({
   },
 });
 
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '300mb',
+    },
+  },
+};
+
 export async function POST(request) {
   try {
     const formData = await request.formData();
@@ -20,6 +28,13 @@ export async function POST(request) {
 
     if (file.type !== "application/pdf") {
       return NextResponse.json({ error: "Only PDF files are allowed" }, { status: 400 });
+    }
+
+        const MAX_FILE_SIZE = 300 * 1024 * 1024; // 300MB in bytes
+    if (file.size > MAX_FILE_SIZE) {
+      return NextResponse.json({ 
+        error: `File too large. Maximum size is 300MB. Your file is ${(file.size / (1024 * 1024)).toFixed(2)}MB` 
+      }, { status: 400 });
     }
 
     const buffer = Buffer.from(await file.arrayBuffer());
