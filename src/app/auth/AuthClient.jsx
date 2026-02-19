@@ -92,6 +92,7 @@ const checkSubscription = async () => {
   } else {
     router.push(redirectPath);
   }
+  // hdejdjwklndkjnwkjndjknjk
 }, 1000);
     } catch (err) {
       setError(err.response?.data?.message || 'Sign-in failed. Please try again.');
